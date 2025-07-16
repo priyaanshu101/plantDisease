@@ -2,19 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-/* You can add your custom global CSS here if needed */
-/* For example, basic body styles */
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif; /* Using 'Inter' as requested for general UI */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Basic root styling from your App.css, if you want to keep it global */
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
