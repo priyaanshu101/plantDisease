@@ -32,7 +32,3 @@ A web application for detecting plant diseases using machine learning models.
 ## Contributing
 
 Contributions are welcome! Please open issues or pull requests for improvements.
-
-## License
-
-This project is licensed under the MIT License.
