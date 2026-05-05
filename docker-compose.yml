@@ -1,0 +1,43 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    # Map container port 8010 to host port 8010
+    ports:
+      - "8010:8010"
+    # Mount current directory to /app/backend for live changes (development only)
+    # This can be useful if you're actively developing the backend and want changes
+    # to be reflected without rebuilding the image every time.
+    # Remove or comment out for production.
+    volumes:
+      - ./backend:/app/backend
+    environment:
+      # Optional: You can pass environment variables to your backend container here
+      # For example, if you had a debug flag:
+      # DEBUG: "true"
+      # If your model needs specific environment variables, add them here
+      PYTHONUNBUFFERED: 1 # Useful for seeing Python output immediately in logs
+
+  frontend:
+    # Option 1: If you want to build and serve frontend from Nginx/Apache in Docker
+    # build: ./frontend
+    # ports:
+    #   - "5173:80" # Map host port 5173 (Vite's default) to container's web server port
+    # depends_on:
+    #   - backend # Frontend depends on backend being up
+
+    # Option 2 (Recommended for local development): Run frontend directly on host
+    # This is often simpler for React/Vite development as HMR works better.
+    # Make sure to start your frontend separately using 'npm run dev' or 'yarn dev'
+    # in the frontend/ directory.
+    # The frontend's .env file should point to the backend service.
+    # VITE_BACKEND_URL=http://localhost:8010 (or http://127.0.0.1:8010)
+
+    # If you choose Option 1, you would need a Dockerfile for the frontend
+    # and potentially an Nginx configuration file. For local development,
+    # it's usually easier to run the frontend outside Docker and point it
+    # to the Dockerized backend.
+    image: alpine/git:latest # Placeholder image if not dockerizing frontend for dev
+    command: echo "Frontend running on host or needs a Dockerfile if uncommented above."
